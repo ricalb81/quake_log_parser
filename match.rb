@@ -11,6 +11,10 @@ class Match
     @total_kills = 0
   end
 
+  def add_player(player)
+    @players << player unless @players.include?(player) || player == '<world>'
+  end
+
   def report
     {
       "game_#{@id}": {
