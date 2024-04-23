@@ -12,12 +12,23 @@ class Match
   end
 
   def add_player(player)
-    @players << player unless @players.include?(player) || player == '<world>'
+    return if @players.include?(player) || player == '<world>'
+
+    @players << player
+    @kills[player] = 0
   end
 
   def add_means(means_of_killing)
     @kills_by_means[means_of_killing] = 0 unless @kills_by_means.include?(means_of_killing)
   end
+
+  def add_kill(killer, killed, means)
+    @total_kills += 1
+    @kills[killer] += 1 unless killer == '<world>'
+    @kills[killed] -= 1 if killer == '<world>'
+    @kills_by_means[means] += 1
+  end
+
 
   def report
     {
