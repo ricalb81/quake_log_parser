@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Class used to create the matches
 class Match
   attr_reader :id, :players, :kills, :kills_by_means
 
