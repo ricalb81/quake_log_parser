@@ -11,6 +11,8 @@ class LogParser
     File.foreach(@file_path) do |line|
       if line.include?('InitGame')
         match = new_match
+      elsif line.include?('ClientUserinfoChanged')
+        add_player_to_match(match, line)
       end
     end
     @matches
@@ -20,5 +22,10 @@ class LogParser
     match = Match.new(@matches.size + 1)
     @matches << match
     match
+  end
+
+  def add_player_to_match(match, line)
+    player = line.split('\\').first.split('n\\').last
+    match.add_player(player)
   end
 end
