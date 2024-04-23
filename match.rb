@@ -15,6 +15,10 @@ class Match
     @players << player unless @players.include?(player) || player == '<world>'
   end
 
+  def add_means(means_of_killing)
+    @kills_by_means[means_of_killing] = 0 unless @kills_by_means.include?(means_of_killing)
+  end
+
   def report
     {
       "game_#{@id}": {
