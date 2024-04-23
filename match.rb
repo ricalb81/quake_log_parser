@@ -24,11 +24,15 @@ class Match
 
   def add_kill(killer, killed, means)
     @total_kills += 1
-    @kills[killer] += 1 unless killer == '<world>'
-    @kills[killed] -= 1 if killer == '<world>'
+    if killer == '<world>'
+      @kills[killed] -= 1
+    else
+      @kills[killer] += 1
+    end
+
+    add_means(means)
     @kills_by_means[means] += 1
   end
-
 
   def report
     {
