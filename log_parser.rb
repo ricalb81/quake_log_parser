@@ -40,4 +40,8 @@ class LogParser
     killed, means = line.split('by').map(&:strip)
     match.add_kill(killer, killed, means)
   end
+
+  def report
+    @matches.map(&:report)
+  end
 end
