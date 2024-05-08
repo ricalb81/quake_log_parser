@@ -5,12 +5,13 @@
 class LogParser
   require './match'
 
+  attr_reader :matches, :file_path
+
   # The LogParser constructor initializes a new LogParser with a given file path.
   # It also initializes matches as an empty array.
   #
   # @param file_path [String] The path to the log file.
-  def initialize(file_path)
-    @file_path = file_path
+  def initialize
     @matches = []
   end
 
@@ -18,7 +19,8 @@ class LogParser
   # It creates a new match when it finds 'InitGame',
   # adds a player to the match when it finds 'ClientUserinfoChanged',
   # and adds a kill to the match when it finds 'Kill:'.
-  def parse
+  def parse(file_path)
+    @file_path = file_path
     match = nil
     File.foreach(@file_path) do |line|
       if line.include?('InitGame')
@@ -68,6 +70,6 @@ class LogParser
   #
   # @return [Array<Hash>] The report of all matches.
   def report
-    @matches.map(&:report)
+    matches.map(&:report)
   end
 end
