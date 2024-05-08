@@ -4,6 +4,8 @@
 # It keeps track of players, kills, and the means of kills.
 # It also provides a report of the match.
 class Match
+  attr_reader :id, :players, :kills, :kills_by_means
+
   # The Match constructor initializes a new match with a given id.
   # It also initializes players, kills, and kills_by_means as empty hashes,
   # and total_kills as 0.
