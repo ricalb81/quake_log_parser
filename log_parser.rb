@@ -7,18 +7,19 @@ class LogParser
 
   attr_reader :matches, :file_path
 
-  # The LogParser constructor initializes a new LogParser with a given file path.
-  # It also initializes matches as an empty array.
-  #
-  # @param file_path [String] The path to the log file.
+  # The LogParser constructor initializes a new LogParser.
+  # It initializes matches as an empty array.
   def initialize
     @matches = []
   end
 
-  # The parse method parses the log file and creates matches.
+  # The parse method parses the log file in the with a given file path
+  # and creates matches.
   # It creates a new match when it finds 'InitGame',
   # adds a player to the match when it finds 'ClientUserinfoChanged',
   # and adds a kill to the match when it finds 'Kill:'.
+  #
+  # @param file_path [String] The path to the log file.
   def parse(file_path)
     @file_path = file_path
     match = nil
